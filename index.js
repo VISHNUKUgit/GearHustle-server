@@ -4,6 +4,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const router = require('./Router/router')
+// create connection with dataBase
+require('./DataBase/connection')
  
 // Create server
 const ghServer = express()
@@ -12,6 +14,10 @@ ghServer.use(cors())
 ghServer.use(express.json())
 // establish connection between router and server
 ghServer.use(router)
+// 
+ghServer.use('/images/profile',express.static('./images/profile'))
+
+ghServer.use('/images/car',express.static('./images/car'))
 
 const PORT = 4000 || process.env.PORT
 
